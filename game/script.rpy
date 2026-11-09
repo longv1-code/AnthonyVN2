@@ -9,15 +9,71 @@ define parker = Character("Parker")
 define abot = Character("Abot")
 define seb = Character("Sebastian")
 define mc = Character("Anthony")
+define kevin = Character("Kevin")
 
 define arlecchino = Character("Arlecchino")
+define x = Character("?")
+
+default retries = 0
+default persistent.endingB = False
+
+image bg city:
+    "images/bg city.jpg"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg animebedroom:
+    "images/bg animebedroom.jpg"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg bedroom:
+    "images/bg bedroom.jpg"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg cafe_entrance:
+    "images/bg cafe_entrance.png"
+    xysize (1920, 1080)
+    fit "cover"
+    xalign 0.5
+    yalign 0.3
+
+image bg cafe_hall:
+    "images/bg cafe_hall.png"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg cafe_seat:
+    "images/bg cafe_seat.png"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg computer:
+    "images/bg computer.jpg"
+    xysize (1920, 1080)
+    fit "cover"
+    yalign 0.6
+
+image bg door:
+    "images/bg door.jpg"
+    xysize (1920, 1080)
+    fit "cover"
+
+image bg black:
+    "images/bg black.jpg"
+    xysize (1920, 1080)
+    fit "cover"
 
 # The game starts here.
 
-label start:    
+label start:
+    if persistent.endingB:
+        jump realistic
+    
     "Today is Novemeber 9th, 2026. A very special day for a certain someone."
 
-    "It is your birthday. You've been looking forward this ever since he planned a whole hangout session with your friends."
+    "It is your birthday. You've been looking forward this ever since you planned a whole hangout session with your friends."
 
     "You slowly wakes up from your slumber."
 
@@ -40,6 +96,7 @@ label start:
         
 
 label ending_doomscroll:
+    scene bg black
     "You chose to doomscroll on Instagram."
 
     mc "One funny reel and I'll call it."
@@ -73,13 +130,13 @@ label dream:
 
     "You yawned as you get out of bed, putting on your slippers one at a time."
 
-    show bg door
+    scene bg door
 
     play sound knock
 
     "You hear a knock on your door."
 
-    "Honey? Are you awake?"
+    x "Honey? Are you awake?"
 
     "A woman's voice is coming from behind the door."
 
@@ -89,7 +146,10 @@ label dream:
 
     play sound door_open
 
-    show arlecchino
+    show arlecchino:
+        zoom 0.5
+        xalign 0.5
+        yalign 0.5
     
     arlecchino "Happy Birthday, sweetie. How was your sleep?"
 
@@ -107,7 +167,7 @@ label dream:
 
     "Dr. Pepper."
 
-    show bg computer
+    scene bg computer
 
     mc "Time to boot up my computer and do my dailies on"
 
@@ -137,41 +197,62 @@ label dream:
 
     mc "And 50 other more gacha games"
 
-    hide bg computer
+    scene bg black
 
     "After a couple of hours of finishing your dailies and drinking your gallon of Dr. Pepper, it was time for you to start your day."
 
-    show bg bedroom
+    scene bg bedroom
 
     "Your stomach growls as it only consumed only Dr. Pepper."
 
     mc "Boy, I am sure hungry."
 
-    show arlecchino
+    show arlecchino:
+        zoom 0.5
+        xalign 0.5
+        yalign 0.5
 
-    arlecchino "Don't worry, honey! I just cooked you some food."
+    arlecchino "Don't worry, darling. I just cooked you some food."
+
+    hide arlecchino
+
+    scene bg black
 
     "Arlecchino presents you her cooking."
+
+    show steak:
+        xalign 0.5
+        yalign 0.5
 
     "A succulent, juicy steak."
 
     mc "Wow, thank you so much!"
 
+    mc "Itadakimasu!"
+
+    hide steak
+
+    play sound eating
+
     "You proceed to grab a bite of the steak."
 
     mc "Mmm! This taste..."
 
-    hide bg bedroom
+    scene bg black
 
-    "You collasped all of a sudden"
+    play sound death
+
+    "You collasped all of a sudden."
 
     "You forgot Arlecchino cooks her steak raw."
 
     "Game Over."
 
-    "Or... is it?"
+    $ persistent.endingB = True
 
-    jump realistic
+    "Ending B: Poisoned by your wife."
+
+    return
 
 label realistic:
     "You suddenly woke up, breathing heavily."
@@ -182,7 +263,7 @@ label realistic:
 
     "You sighed and stood up to open up your blinds."
 
-    show bg animebedroom
+    scene bg animebedroom
 
     mc "Today is my birthday and yet..."
 
@@ -190,17 +271,19 @@ label realistic:
 
     "Today is your day off from being a corporate slave."
 
-    "You decided to use your yearly one day off today but planned anything."
+    "You decided to use your yearly one day off today but didn't planned anything."
 
     "You pulled out your phone to doomscrolled a bit to look for something to do."
 
+    pause(3.0)
+
     "You stumbled upon an ad that happened to open today near your place."
 
-    mc "Oh, today this place just opened. It's also near my place."
+    mc "Oh, today this place just opened. It's also near me. What a coincidence."
 
     mc "Wouldn't mind checking it out, got nothing else to do."
 
-    hide bg animebedroom
+    scene bg black
 
     "You went to get ready by showering and dressing up in your favorite Suisei shirt, favorite Ina jacket, favorite baggy black pants, and favorite tote bag."
 
@@ -209,7 +292,7 @@ label realistic:
     jump outside
 
 label outside:
-    show bg city
+    scene bg city
 
     play music city volume 0.2 loop
 
@@ -221,19 +304,119 @@ label outside:
 
     "You wish a bit to have someone to hang out with."
 
-    hide bg city
+    scene bg black
 
     mc "Welp, I guess this is the place."
 
-    show bg cafe_entrance
+    scene bg cafe_entrance
 
-    mc "Why did I even choose to go here of all places to be for my birthday?"
+    if retries == 0:
+        mc "Why did I even choose to go here of all places to be for my birthday?"
 
-    mc "Oh, whatever. Better than staying at home doing dailies all day."
+        mc "Oh, whatever. Better than staying at home doing dailies all day."
 
-    hide bg cafe_entrace
+        "You entered the maid cafe despite your embarrassment of going in alone."
 
-    jump maid:
+        stop music
+
+        scene bg black
+
+    # elif retries == 1:
+        
+
+    jump maid
 
 label maid:
+    scene bg cafe_hall
+
+    play music cafe_bg_1 volume 0.1 fadein 1.0 loop 
+
+    if retries == 0:
+        "The moment you walked in, you immediately get blasted by the Blend S opening but something is different about it."
+
+        "You take a couple of seconds looking around the cafe, admiring its decoration."
+
+        mc "{i}It honestly doesn't look too bad.{/i}"
+
+        "You don't see any customers in the cafe. You wonder if it's because of the music or that it just opened."
+
+        x "Welcome, sir, to our finest Maid cafe establishment you will experience."
+
+        "You hear a man's voice to your right."
+
+        show kevin:
+            zoom 0.3
+            xalign 0.5
+            yalign 1.5
+
+        kevin "How many people?"
+
+        "You look around you."
+
+        mc "Just... one, please, Kevin."
+
+        mc "{i}How did I know his name when he didn't say it?{/i}"
+
+        "Kevin grabs one menu from the host table."
+
+        kevin "Alright, follow me to your seat."
+
+        hide kevin
+
+        "He starts walking inside at a fast pace and you start following him, trying to match his speed."
+
+        stop music fadeout 1.0
+
+        # play music cafe_bg_2 volume 0.1 fadein 1.0 loop
+
+        scene bg cafe_seat
+
+        "You sat down at the booth area where in front of you is the stage where you assume the maids perform."
+        
+        show kevin:
+            zoom 0.3
+            xalign 0.5
+            yalign 1.5
+
+        kevin "Here's the menu, sir. Pick which maid you would love to accompany you for your stay."
+
+        hide kevin
+
+        mc "Thank yo-"
+
+        "And before you can say your thanks, he was already gone."
+
+        mc "{i}Okay, weird... let's see what's on the menu today.{/i}"
+
+        jump menu_scene
+
+label menu_scene:
+    if retries > 0:
+        pause(1.0)
+        mc "{i}Wait, wasn't there supposed to be someone here?{/i}"
+
+    call screen menu
+
+    $ selected_maid = _return
+    $ menu_removed.append(selected_maid)
+
+    jump expression selected_maid
+
+label ant:
+    "You have chosen Ant as your maid."
+
+
+label charley:
+    "You have chosen Charley as your maid."
+
+label parker:
+    "You have chosen Parker as your maid."
+
+label abot:
+    "You have chosen Abot as your maid."
+
+label sebastian:
+    "You have chosen Sebastian as your maid."
+
+label ending_cafe:
     
