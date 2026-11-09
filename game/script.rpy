@@ -979,7 +979,7 @@ label parker:
 
     play sound "characters/Parker/Acknowledge.mp3"
     
-    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest rack."
+    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
 
     hide parker
 
@@ -1003,7 +1003,7 @@ label parker:
     # dialogue and voice 4, brings order
     play sound "characters/Parker/Return.mp3"
 
-    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that tree, innit, yknow what i mean, that little bit of tree in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
+    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that {b}tree{/b}, innit, yknow what i mean, that little bit of {b}tree{/b} in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
     # birdtime menu
     menu:
         mc "{i}How do I even reply to that...?{/i}"
@@ -1043,7 +1043,7 @@ label parker:
 
     return
 
-'''
+```
 label sebastian:
     "You have chosen Sebastian as your maid."
 
