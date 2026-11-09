@@ -4,7 +4,7 @@
 # name of the character.
 
 define ant = Character("Ant")
-define charley = Character("Charley")
+define charley = Character("Kazuma Kiryu")
 define parker = Character("Parker")
 define abot = Character("Abot")
 define seb = Character("Sebastian")
@@ -60,6 +60,11 @@ image bg door:
     xysize (1920, 1080)
     fit "cover"
 
+image bg notification:
+    "images/bg notification.png"
+    xysize (1920, 1080)
+    fit "cover'"
+
 image bg black:
     "images/bg black.jpg"
     xysize (1920, 1080)
@@ -86,11 +91,38 @@ image ant:
     xalign 0.5
     yalign 0.5
 
+image charley:
+    "characters/Charley/charley maid.png"
+    xalign 0.5
+    yalign 0.5
+
+image charley hearts:
+    "characters/Charley/charley hearts.png"
+    xalign 0.5
+    yalign 0.5
+
+image charley load:
+    "characters/Charley/charley load.png"
+    xalign 0.5
+    yalign 0.5
+
+image charley points:
+    "characters/Charley/charley points.png"
+    xalign 0.5
+    yalign 0.5
+
+image charley stares:
+    "characters/Charley/charley stares.png"
+    xalign 0.5
+    yalign 0.5
+
 # The game starts here.
 
 label start:
     if persistent.retries > 0:
-        jump begin_cafe
+        scene bg cafe_seat
+        $ persistent.menu_removed = []
+        jump menu_scene
     if persistent.endingB:
         jump realistic
     
@@ -415,13 +447,13 @@ label maid:
 
     "And before you can say your thanks, he was already gone."
 
+    jump menu_scene
+
+label menu_scene:
     mc "{i}Okay, weird... let's see what's on the menu today.{/i}"
 
     mc "{i}Okay, why the fuck is the menu just a piece of paper?{/i}"
 
-    jump menu_scene
-
-label menu_scene:
     if persistent.retries > 0:
         pause(1.0)
         mc "{i}Wait, wasn't there supposed to be someone here?{/i}"
@@ -460,7 +492,7 @@ label abot:
 
     menu:
         "Nans Lasanga":
-            "You have chosen Nans Lasanga"
+            "You have chosen Nans Lasanga."
             mc "I\'ll have the Nans Lasanga."
         "Rice and Peas":
             "You have chosen... Rice and Peas?"
@@ -596,7 +628,7 @@ label ant:
 
     menu:
         "Nans Lasanga":
-            "You have chosen Nans Lasanga"
+            "You have chosen Nans Lasanga."
             mc "I\'ll have the Nans Lasanga."
         "Rice and Peas":
             "You have chosen... Rice and Peas?"
@@ -703,12 +735,381 @@ label ant:
 label charley:
     "You have chosen Charley as your maid."
 
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid coming towards you."
+
+    show charley
+
+    play sound "characters/Charley/Introduction.mp3" # play voice 1
+    
+    charley "yōkoso。私wo選ndeitadaki、本当niarigatōgozaimasu。"
+
+    mc "{i}I have no clue what he just said to me.{/i}"
+
+    mc "{i}Is there English subtitles for this?{/i}"
+
+    "A mysterious screen pops in front of you."
+
+    hide charley
+    scene bg notification
+    play sound notification volume 0.5
+
+    "You have been granted Google Translation English Subtitles (SSR)."
+
+    mc "{i}Oh sweet.{/i}"
+
+    scene bg cafe_seat
+
+    show charley
+
+    play sound "characters/Charley/Introduction.mp3"
+
+    charley "Welcome. Thank you very much for choosing me."
+
+    show charley hearts
+    play audio magic
+
+    play audio "characters/Charley/Name.mp3"
+
+    charley "My name is Kiryu, Dragon of Dojima."
+
+    show charley
+
+    play sound "characters/Charley/Order.mp3"
+
+    charley "What would you like to eat?"
+
+    # menu
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga."
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    show charley points
+
+    play sound "characters/Charley/Acknowledges_1.mp3"
+
+    charley "That is an excellent choice."
+
+    show charley load
+
+    play sound "characters/Charley/Acknowledges_2.mp3"
+
+    charley "I will be right back."
+
+    hide charley
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    show charley stares
+
+    "He gives you your food and stares at you for a period of time."
+
+    # birdtime menu
+    menu:
+        mc "{i}How do I reply to that?{/i}"
+
+        "Spread Wings":
+            "You spread your arms out like they're wings."
+
+            "Kiryu looks at you weirdly."
+
+            "You feel the embarrassment rushing to you, you lowered your wings."
+
+            "Bad option."
+
+        "Be Intimidating":
+            "You stare at Kiryu intensely like the thousand yard stare."
+
+            show charley stares
+            "Kiryu stares back."
+
+            "You stare at his eyes even more intensely like it was the only thing that mattered right now."
+
+            "Kiryu stares at you with his sharp eyes, not blinking once."
+
+            "You both are communicating each other with your stares and acknowledges each other as fellow brethrens."
+
+            "Good option."
+
+        "Dance":
+            play sound dance
+            "You start pulling out the Fortnite dance right in front of him."
+
+            show charley points
+            "Kiryu hits you back with an even harder and more cooler dance to counter."
+
+            "You felt defeated from the sheer aura of his dance moves."
+
+            mc "{i}I-Impossible. How can he be so cool?{/i}"
+
+            "Bad option."
+    
+    hide charley
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show charley
+
+    play sound "<to 3.2>characters/Charley/Birthday.mp3"
+
+    charley "I heard it's your birthday."
+
+    show charley hearts
+    play audio magic
+
+    play audio "<from 3.21>characters/Charley/Birthday.mp3"
+
+    charley "Happy birthday."
+
+    mc "Thank you, my brother."
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+
+    show charley stares
+
+    play sound "characters/Charley/Goodbye_1.mp3"
+
+    charley "Please come again."
+
+    show charley hearts
+    play audio magic
+
+    play audio "characters/Charley/Goodbye_2.mp3"
+
+    charley "See you later, Anthony."
+
+    mc "Thanks, my brother. We shall meet again."
+
+    hide charley # hide char
+
+    call ending_cafe
+
+    "Ending Charley" # end char
+
+    return
+```
 label parker:
     "You have chosen Parker as your maid."
+
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid(?) coming towards you."
+
+    show # char
+
+    play sound "characters" # play voice 1
+
+    # dialogue 1
+    
+    # filler char and dialogue and voice
+
+    play sound "characters" # play voice 2
+
+    # dialogue 2
+
+    # menu
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    # dialogue and voice acknowledges order (3)
+
+    # hide char
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    # show char
+    show 
+
+    # dialogue and voice 4, brings order
+
+    # birdtime menu
+    menu:
+        mc "{i}How do I even reply to that...?{/i}"
+
+    
+    hide # hide char
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show # show char
+
+    # dilogue and voice 5, birthday
+
+    mc "...thanks??"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+
+    # dialogue and voice 6, goodbye
+
+    mc "Uhm, yea, sorry. I-It was nice having you as my maid! Haha.."
+
+    hide # hide char
+
+    call ending_cafe
+
+    "Ending " # end char
+
+    return
 
 label sebastian:
     "You have chosen Sebastian as your maid."
 
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid(?) coming towards you."
+
+    show # char
+
+    play sound "characters" # play voice 1
+
+    # dialogue 1
+    
+    # filler char and dialogue and voice
+
+    play sound "characters" # play voice 2
+
+    # dialogue 2
+
+    # menu
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    # dialogue and voice acknowledges order (3)
+
+    # hide char
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    # show char
+    show 
+
+    # dialogue and voice 4, brings order
+
+    # birdtime menu
+    menu:
+        mc "{i}How do I even reply to that...?{/i}"
+
+    
+    hide # hide char
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show # show char
+
+    # dilogue and voice 5, birthday
+
+    mc "...thanks??"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+
+    # dialogue and voice 6, goodbye
+
+    mc "Uhm, yea, sorry. I-It was nice having you as my maid! Haha.."
+
+    hide # hide char
+
+    call ending_cafe
+
+    "Ending " # end char
+
+    return
+```
 label ending_cafe:
     scene bg cafe_hall
 
@@ -729,6 +1130,8 @@ label ending_cafe:
     mc "{i}What's happening to me?!{/i}"
 
     mc "{i}Am I going to..{/i}"
+
+    play sound death
 
     "You died."
 
