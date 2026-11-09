@@ -5,7 +5,7 @@
 
 define ant = Character("Ant")
 define charley = Character("Kazuma Kiryu")
-define parker = Character("Parker")
+define parker = Character("Ali G")
 define abot = Character("Abot")
 define seb = Character("Sebastian")
 define mc = Character("Anthony")
@@ -113,6 +113,16 @@ image charley points:
 
 image charley stares:
     "characters/Charley/charley stares.png"
+    xalign 0.5
+    yalign 0.5
+
+image parker:
+    "characters/Parker/parker peace.png"
+    xalign 0.5
+    yalign 0.5
+
+image parker points:
+    "characters/Parker/parker points.png"
     xalign 0.5
     yalign 0.5
 
@@ -919,7 +929,7 @@ label charley:
     "Ending Charley" # end char
 
     return
-```
+
 label parker:
     "You have chosen Parker as your maid."
 
@@ -929,19 +939,29 @@ label parker:
 
     mc "{i}Where did I go wrong?{/i}"
 
-    "You see a maid(?) coming towards you."
+    "You see a maid coming towards you."
 
-    show # char
+    show parker # char
 
-    play sound "characters" # play voice 1
+    play sound "characters/Parker/Introduction.mp3" # play voice 1
 
     # dialogue 1
+    parker "wah gwan, bruv. thank u for choosing me, Ali G, to be ur mate today, innit."
     
     # filler char and dialogue and voice
 
-    play sound "characters" # play voice 2
+    show parker points
+
+    play sound "characters/Parker/Filler.mp3" # play voice 2
+
+    parker "make sure u remember to stream my new song. ♪{i}Who is I, Mm, Who is I, Uh, Who is I{/i}♪"
 
     # dialogue 2
+    show parker
+
+    play sound "characters/Parker/Order.mp3"
+
+    parker "yo anyways bruv, what u like to eat, yknow? u feel me, innit?"
 
     # menu
     menu:
@@ -956,6 +976,12 @@ label parker:
             mc "I\'ll have the Fish and Chips."
 
     # dialogue and voice acknowledges order (3)
+
+    play sound "characters/Parker/Acknowledge.mp3"
+    
+    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest rack."
+
+    hide parker
 
     # hide char
 
@@ -972,10 +998,12 @@ label parker:
     "You see your maid coming towards you for your food."
 
     # show char
-    show 
+    show parker
 
     # dialogue and voice 4, brings order
+    play sound "characters/Parker/Return.mp3"
 
+    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that tree, innit, yknow what i mean, that little bit of tree in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
     # birdtime menu
     menu:
         mc "{i}How do I even reply to that...?{/i}"
@@ -1015,6 +1043,7 @@ label parker:
 
     return
 
+'''
 label sebastian:
     "You have chosen Sebastian as your maid."
 
