@@ -126,12 +126,16 @@ image parker points:
     xalign 0.5
     yalign 0.5
 
+image seb :
+    "characters/Sebastian/sebastian.png"
+    xalign 0.5
+    yalign 0.5
+
 # The game starts here.
 
 label start:
     if persistent.retries > 0:
-        scene bg cafe_seat
-        $ persistent.menu_removed = []
+        $ persistent.menu_removed = [] # testing purpose
         jump menu_scene
     if persistent.endingB:
         jump realistic
@@ -220,6 +224,10 @@ label dream:
 
     mc "Thank you, Arlecchino. It was great, thanks for asking."
 
+    mc "This is my wife, Arlecchino."
+
+    mc "I can't believe I caught such a baddie in my life, literally best waifu, top tier. Top baddies of all baddies."
+
     arlecchino "Did you do your dailies yet?"
 
     mc "I have not, I should do that soon. Thanks for reminding me."
@@ -230,11 +238,19 @@ label dream:
 
     "Arlecchino leaves your bedroom to grab your daily dose of medicine..."
 
+    scene bg black
+
+    show drpepper:
+        xalign 0.5
+        yalign 0.5
+
     "Dr. Pepper."
+
+    hide drpepper
 
     scene bg computer
 
-    mc "Time to boot up my computer and do my dailies on"
+    mc "Time to boot up my computer and do my dailies on:"
 
     mc "Genshin Impact"
 
@@ -261,6 +277,12 @@ label dream:
     mc "Raid: Shadow Legends"
 
     mc "And 50 other more gacha games"
+
+    mc "My wife just let me drink Dr. Pepper. How cool is that? Now I'm playing gacha and drinking Dr. Pepper."
+
+    play sound yippee
+    
+    mc "Yippeee!"
 
     scene bg black
 
@@ -297,9 +319,10 @@ label dream:
 
     hide steak
 
-    play sound eating
-
     "You proceed to grab a bite of the steak."
+
+    play sound eating
+    mc "nom nom nom..."
 
     mc "Mmm! This taste..."
 
@@ -376,11 +399,6 @@ label outside:
     jump cafe_entrance
 
 label begin_cafe:
-    if persistent.retries > 0:
-        scene bg black
-        play sound rezero_return
-        pause (1.0)
-
     scene bg cafe_entrance
 
     mc "Why did I even choose to go here of all places to be for my birthday?"
@@ -460,6 +478,12 @@ label maid:
     jump menu_scene
 
 label menu_scene:
+    if persistent.retries > 0:
+        scene bg black
+        play sound rezero_return
+        pause (1.0)
+        scene bg cafe_seat
+
     mc "{i}Okay, weird... let's see what's on the menu today.{/i}"
 
     mc "{i}Okay, why the fuck is the menu just a piece of paper?{/i}"
@@ -624,9 +648,15 @@ label ant:
 
     show ant
 
+    mc "{i}Aweee, what a cute puppy!{/i}"
+
     play sound "characters/Ant/maidline1.mp3"
 
     ant "H-Huh?... You chose me? Well it seems like you have good taste after all… You read the description so you know my name already, right? Good, this is embarrassing as it is…"
+
+    mc "{i}Okayyyy, this is a talking tsundere puppy.{/i}"
+
+    "You try your hardest to keep a smile but you have a feeling of what you're about to experience."
     
     play sound "characters/Ant/maidline2.mp3"
 
@@ -691,7 +721,11 @@ label ant:
 
             "You stand on top of the table and did a somersault for the first time."
 
-            "He stares at you in awe, not sure what to make of that."
+            "Somehow you rolled a nat 20 and executed a flawless somersault."
+
+            "You feel very proud of yourself for pulling it off."
+
+            "By the time you become aware of your surroundings, he was already gone."
 
             "Bad option."
     
@@ -905,7 +939,7 @@ label charley:
 
     mc "{i}Man, this place keeps getting weirder by the second.{/i}"
 
-    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
 
     show charley stares
 
@@ -1008,8 +1042,41 @@ label parker:
     menu:
         mc "{i}How do I even reply to that...?{/i}"
 
+        "Tilt your head":
+            "You tilt your head."
+
+            "Ali G tilts his head, but he took yours as a sign of aggression."
+
+            parker "chill bruv, i no want no trouble"
+
+            "He didn't fuck with your vibe and left."
+
+            "Bad option."
+
+        "Gaze intently":
+            "You gaze intently into Ali G's eyes."
+
+            "It became an awkward moment of two dudes staring at each other\'s eyes."
+
+            parker "mb dawg, guess you dont pass the vibe check."
+
+            "He left, thinking he found the one."
+
+            "Bad option."
+
+        "Sing a beautiful tone":
+            "You start singing a beautiful tone."
+
+            "Ali G was taken back by your voice."
+
+            parker "eyyy bruv, i like ur tune. hit me up."
+
+            "He hands you his phone number, asking you to produce a song together sometime."
+
+            "Good option."
+
     
-    hide # hide char
+    hide parker # hide char
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
 
@@ -1019,31 +1086,55 @@ label parker:
 
     "As you're about to leave to pay for your check, the maid comes to your table."
 
-    show # show char
+    show parker
+
+    play sound "characters/Parker/Birthday_1.mp3"
+
+    parker "me gotchu a cake or whateva bruv but"
+
+    show parker points
+
+    play sound "characters/Parker/Birthday_2.mp3"
+
+    parker "no gay shit no homoshit bruv. me is not a homosexual."
 
     # dilogue and voice 5, birthday
 
-    mc "...thanks??"
+    mc "Thanks..? I appreicate that... bruv, socks on?"
 
     mc "{i}...how does he know it's my birthday?{/i}"
 
     mc "{i}Man, this place keeps getting weirder by the second.{/i}"
 
-    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
 
     # dialogue and voice 6, goodbye
+    play sound "characters/Parker/Goodbye_1.mp3"
 
-    mc "Uhm, yea, sorry. I-It was nice having you as my maid! Haha.."
+    parker "goodbye from Ali G"
 
-    hide # hide char
+    show parker
+
+    play sound "characters/Parker/Goodbye_2.mp3"
+
+    parker "peace!"
+
+    play sound "characters/Parker/Goodbye_3.mp3"
+
+    parker "{b}BOOYAHKASHA{/b}"
+
+    hide parker
+
+    "Ali G suddenly vanished out of thin air."
+
+    mc "{i}And that right there is when I need to see a therapist.{/i}"
 
     call ending_cafe
 
-    "Ending " # end char
+    "Ending Parker" # end char
 
     return
 
-```
 label sebastian:
     "You have chosen Sebastian as your maid."
 
@@ -1053,13 +1144,13 @@ label sebastian:
 
     mc "{i}Where did I go wrong?{/i}"
 
-    "You see a maid(?) coming towards you."
+    "You see a maid coming towards you."
 
-    show # char
+    show seb
 
-    play sound "characters" # play voice 1
+    play sound "characters/Sebastian/Introduction.mp3" # play voice 1
 
-    # dialogue 1
+    seb
     
     # filler char and dialogue and voice
 
@@ -1138,11 +1229,15 @@ label sebastian:
     "Ending " # end char
 
     return
-```
+
 label ending_cafe:
     scene bg cafe_hall
 
-    "You went to go pay for your food of $100."
+    "You went to go pay for your food of $1000000 + their mandatory 1000% tips."
+
+    play sound applepay
+
+    "Somehow you just had the money to do it."
 
     mc "{i}Never coming here again.{/i}"
 
