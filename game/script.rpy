@@ -14,7 +14,7 @@ define kevin = Character("Kevin")
 define arlecchino = Character("Arlecchino")
 define x = Character("?")
 
-default retries = 0
+default persistent.retries = 0
 default persistent.endingB = False
 
 image bg city:
@@ -65,9 +65,32 @@ image bg black:
     xysize (1920, 1080)
     fit "cover"
 
+
+image abot:
+    "characters/ABot/abot.png"
+    xalign 0.5
+    yalign 0.5
+
+image abot sad:
+    "characters/ABot/abot sad.png"
+    xalign 0.5
+    yalign 0.5
+
+image abot speak:
+    "characters/Abot/abot speak.png"
+    xalign 0.5
+    yalign 0.5
+
+image ant:
+    "characters/Ant/ant.png"
+    xalign 0.5
+    yalign 0.5
+
 # The game starts here.
 
 label start:
+    if persistent.retries > 0:
+        jump begin_cafe
     if persistent.endingB:
         jump realistic
     
@@ -308,21 +331,25 @@ label outside:
 
     mc "Welp, I guess this is the place."
 
+    jump cafe_entrance
+
+label begin_cafe:
+    if persistent.retries > 0:
+        scene bg black
+        play sound rezero_return
+        pause (1.0)
+
     scene bg cafe_entrance
 
-    if retries == 0:
-        mc "Why did I even choose to go here of all places to be for my birthday?"
+    mc "Why did I even choose to go here of all places to be for my birthday?"
 
-        mc "Oh, whatever. Better than staying at home doing dailies all day."
+    mc "Oh, whatever. Better than staying at home doing dailies all day."
 
-        "You entered the maid cafe despite your embarrassment of going in alone."
+    "You entered the maid cafe despite your embarrassment of going in alone."
 
-        stop music
+    stop music
 
-        scene bg black
-
-    # elif retries == 1:
-        
+    scene bg black
 
     jump maid
 
@@ -331,79 +358,346 @@ label maid:
 
     play music cafe_bg_1 volume 0.1 fadein 1.0 loop 
 
-    if retries == 0:
-        "The moment you walked in, you immediately get blasted by the Blend S opening but something is different about it."
+    "The moment you walked in, you immediately get blasted by the Blend S opening but something is different about it."
 
-        "You take a couple of seconds looking around the cafe, admiring its decoration."
+    if persistent.retries > 0:
+        mc "{i}Why do I feel like I've heard this before?{/i}"
 
-        mc "{i}It honestly doesn't look too bad.{/i}"
+    "You take a couple of seconds looking around the cafe, admiring its decoration."
 
-        "You don't see any customers in the cafe. You wonder if it's because of the music or that it just opened."
+    mc "{i}It honestly doesn't look too bad.{/i}"
 
-        x "Welcome, sir, to our finest Maid cafe establishment you will experience."
+    "You don't see any customers in the cafe. You wonder if it's because of the music or that it just opened."
 
-        "You hear a man's voice to your right."
+    x "Welcome, sir, to our finest Maid cafe establishment you will experience."
 
-        show kevin:
-            zoom 0.3
-            xalign 0.5
-            yalign 1.5
+    "You hear a man's voice to your right."
 
-        kevin "How many people?"
+    show kevin:
+        zoom 0.3
+        xalign 0.5
+        yalign 1.5
 
-        "You look around you."
+    kevin "How many people?"
 
-        mc "Just... one, please, Kevin."
+    "You look around you."
 
-        mc "{i}How did I know his name when he didn't say it?{/i}"
+    mc "Just... one, please, Kevin."
 
-        "Kevin grabs one menu from the host table."
+    mc "{i}How did I know his name when he didn't say it?{/i}"
 
-        kevin "Alright, follow me to your seat."
+    "Kevin grabs one menu from the host table."
 
-        hide kevin
+    kevin "Alright, follow me to your seat."
 
-        "He starts walking inside at a fast pace and you start following him, trying to match his speed."
+    hide kevin
 
-        stop music fadeout 1.0
+    "He starts walking inside at a fast pace and you start following him, trying to match his speed."
 
-        # play music cafe_bg_2 volume 0.1 fadein 1.0 loop
+    stop music fadeout 1.0
 
-        scene bg cafe_seat
+    # play music cafe_bg_2 volume 0.1 fadein 1.0 loop
 
-        "You sat down at the booth area where in front of you is the stage where you assume the maids perform."
-        
-        show kevin:
-            zoom 0.3
-            xalign 0.5
-            yalign 1.5
+    scene bg cafe_seat
 
-        kevin "Here's the menu, sir. Pick which maid you would love to accompany you for your stay."
+    "You sat down at the booth area where in front of you is the stage where you assume the maids perform."
+    
+    show kevin:
+        zoom 0.3
+        xalign 0.5
+        yalign 1.5
 
-        hide kevin
+    kevin "Here's the menu, sir. Pick which maid you would love to accompany you for your stay."
 
-        mc "Thank yo-"
+    hide kevin
 
-        "And before you can say your thanks, he was already gone."
+    mc "Thank yo-"
 
-        mc "{i}Okay, weird... let's see what's on the menu today.{/i}"
+    "And before you can say your thanks, he was already gone."
 
-        jump menu_scene
+    mc "{i}Okay, weird... let's see what's on the menu today.{/i}"
+
+    mc "{i}Okay, why the fuck is the menu just a piece of paper?{/i}"
+
+    jump menu_scene
 
 label menu_scene:
-    if retries > 0:
+    if persistent.retries > 0:
         pause(1.0)
         mc "{i}Wait, wasn't there supposed to be someone here?{/i}"
 
     call screen menu
 
     $ selected_maid = _return
-    $ menu_removed.append(selected_maid)
+    $ persistent.menu_removed.append(selected_maid)
 
     jump expression selected_maid
 
+label abot:
+    "You have chosen Abot as your maid."
+
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid coming towards you."
+
+    show abot
+
+    mc "{i}Wow... he looks gorgeous.{/i}"
+
+    hide abot
+    show abot speak
+
+    play sound "characters/ABot/ABotLine1.wav"
+
+    abot "Hey, thanks for choosing me as your maid. I'll be here to serve any request you have today. Uh, what would you like to order?"
+
+    hide abot 
+    show abot
+
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    hide abot
+    show abot speak
+    
+    play sound "characters/ABot/ABotLine2.wav"
+
+    abot "Very well. I shall get that ready for you, sir."
+
+    hide abot
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you with your food but looks very sad."
+
+    show abot sad
+
+    play sound "characters/ABot/ABotLine3alt.wav"
+
+    abot "Uhm... here you go, sir. Uhh, sorry. I lost my 50/50 and it... kinda shrunk."
+
+    mc "{i}Ah. No wonder it looked so small. I thought I was imagining things.{/i}"
+
+    mc "{i}No matter. Maybe the food is just to die for, you know? Gotta keep a positive mindset.{/i}"
+
+    menu:
+        mc "{i}But, how should I reply to him?{/i}"
+
+        "Nod":
+            "You nod your head at him."
+
+            "He looks confused and nods back."
+
+            "Then, there's just an awkward silence."
+
+            "Bad option."
+
+        "Spread Wings":
+            "You spread out your arms like they're wings."
+
+            hide abot
+            show abot
+
+            "He looks confused but somehow it made him feel better."
+
+            "Good option."
+
+        "Be Intimidating":
+            "You stare at him."
+
+            hide abot sad
+
+            "He starts sweating and feeling uncomfortable that he left."
+
+            "Bad option."
+    
+    hide abot
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    play sound "characters/ABot/ABotLine4.wav"
+
+    show abot speak
+
+    abot "Hey, sir! I also happen to know it's your birthday and I just want to say happy birthday! Hope it's going great."
+
+    mc "Aww, thanks!"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me happy.{/i}"
+
+    play sound "characters/Abot/ABotLine5.wav"
+
+    abot "Well, sir. This is goodbye for now. I hope you come again though. Byeee!"
+
+    mc "Bye! It was nice having you as my maid."
+
+    hide abot
+
+    call ending_cafe
+
+    "Ending ABot"
+
+    return
+
 label ant:
     "You have chosen Ant as your maid."
+
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid(?) coming towards you."
+
+    show ant
+
+    play sound "characters/Ant/maidline1.mp3"
+
+    ant "H-Huh?... You chose me? Well it seems like you have good taste after all… You read the description so you know my name already, right? Good, this is embarrassing as it is…"
+    
+    play sound "characters/Ant/maidline2.mp3"
+
+    ant "What? No, it\'s not like I wanted you to choose me or anything… but thanks anyway, I guess…"
+
+    play sound "characters/Ant/maidline3.mp3"
+
+    ant "Alright, so, are you gonna tell me what you want to eat or not, moron?"
+
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    play sound "characters/Ant/maidline4.mp3"
+    ant "You seriously ordered that? I mean, if that\'s what you want, dumbass…"
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    show ant
+
+    play sound "characters/Ant/maidline5.mp3"
+    ant "Sorry for the wait, here\'s your order- What? You want me to do what to your food? Spit in it? I… What the hell is wrong with you?... Sigh… I don\'t do this for just anyone, you know that? Consider yourself lucky."
+
+    ant "{i}Spits on your food{/i}"
+
+    menu:
+        mc "{i}How do I even reply to that...?{/i}"
+
+        "Sing a Beautiful Tune":
+            "You start singing to Bibbidiba by Hoshimachi Suisei for whatever reason."
+
+            "He looks at you weirdly but you can see his ears blushing."
+
+            "Good option."
+
+        "Be Intimidating":
+            "You stare at him intensely."
+
+            "He looks at you disgustingly and bitch slaps you."
+
+            "Bad option."
+
+        "Do a Somersault":
+            "For whatever reason, your body starts moving on its own."
+
+            "You stand on top of the table and did a somersault for the first time."
+
+            "He stares at you in awe, not sure what to make of that."
+
+            "Bad option."
+    
+    hide ant
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show ant
+
+    play sound "characters/Ant/maidline7.mp3"
+
+    ant "Despite the sick and twisted thing you just asked me to do… I couldn\'t let a birthday boy as cute as you go without some sort of celebratory treat, right? Yeah, yeah, wipe that smile off your face, freak…"
+
+    pause 1.0
+
+    mc "...thanks??"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+
+    play sound "characters/Ant/maidline8.mp3"
+
+    ant "You\'re leaving already?-- I mean, bye or whatever. It\'s not like I want you to come back or anything, dummy…"
+
+    mc "Uhm, yea, sorry. I-It was nice having you as my maid! Haha.."
+
+    hide ant
+
+    call ending_cafe
+
+    "Ending Ant"
+
+    show ant
+
+    play sound "characters/Ant/maidline9.mp3"
+
+    pause 12.0
+
+    return
 
 
 label charley:
@@ -412,11 +706,30 @@ label charley:
 label parker:
     "You have chosen Parker as your maid."
 
-label abot:
-    "You have chosen Abot as your maid."
-
 label sebastian:
     "You have chosen Sebastian as your maid."
 
 label ending_cafe:
-    
+    scene bg cafe_hall
+
+    "You went to go pay for your food of $100."
+
+    mc "{i}Never coming here again.{/i}"
+
+    "As you walk out of the maid cafe, you feel your heartbeating so fast."
+
+    scene bg black
+
+    "You then collasped in front of the exit."
+
+    "You can't feel your body at all."
+
+    "It just given up on you for no reason."
+
+    mc "{i}What's happening to me?!{/i}"
+
+    mc "{i}Am I going to..{/i}"
+
+    "You died."
+
+    $ persistent.retries += 1

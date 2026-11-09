@@ -1,7 +1,7 @@
 define menu_entries = {
     "ant": {
         "name" : "Ant",
-        "image": "characters/Ant/ant maid.png",
+        "image": "characters/Ant/ant.png",
         "traits": [
             "Hard to get",
             "Secretly loves you",
@@ -43,9 +43,9 @@ define menu_entries = {
         "name": "ABot",
         "image": "characters/ABot/abot chibi.png",
         "traits": [
-            "Funny",
-            "Hilarious",
-            "Comedic",
+            "Nervous",
+            "Chill",
+            "Gambling Addict",
         ],
         "voice": [
             "characters/ABot/ABotLine1.wav",
@@ -89,11 +89,11 @@ define menu_entries = {
 }
 
 define menu_pages = [
-    ["ant", "abot", "charley", "jayden"],
+    ["abot", "ant", "charley", "jayden"],
     ["parker", "sebastian", "sofia"],
 ]
 
-default menu_removed = []
+default persistent.menu_removed = []
 
 screen menu():
 
@@ -123,7 +123,7 @@ screen menu():
 
         for name in menu_pages[page]:
 
-            if name not in menu_removed:
+            if name not in persistent.menu_removed:
                 # Retrieve entry from dictionary
                 $ entry = menu_entries[name]
 
