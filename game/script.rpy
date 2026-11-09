@@ -70,6 +70,10 @@ image bg black:
     xysize (1920, 1080)
     fit "cover"
 
+image bg ritual:
+    "images/bg ritual.jpeg"
+    xysize (1920, 1080)
+    fit "cover"
 
 image abot:
     "characters/ABot/abot.png"
@@ -126,10 +130,13 @@ image parker points:
     xalign 0.5
     yalign 0.5
 
-image seb :
+image seb:
     "characters/Sebastian/sebastian.png"
+    zoom 1.5
     xalign 0.5
     yalign 0.5
+
+
 
 # The game starts here.
 
@@ -384,19 +391,21 @@ label outside:
 
     play music city volume 0.2 loop
 
-    mc "{i}The cicadas are louder than ever.{/i}"
+    mc "{i}The city is bustling as ever.{/i}"
 
-    mc "{i}I imagined by November, it would get colder but the fact it is still hot for cicadas to be making these noises is geniunely crazy.{/i}"
+    mc "{i}There are tons of people walking around, music played by street performers, chattering among friends and family.{/i}"
 
     "You walk your way to the place and see a couple of high schoolers having fun."
 
     "You wish a bit to have someone to hang out with."
 
+    stop music
+
     scene bg black
 
     mc "Welp, I guess this is the place."
 
-    jump cafe_entrance
+    jump begin_cafe
 
 label begin_cafe:
     scene bg cafe_entrance
@@ -456,7 +465,7 @@ label maid:
 
     stop music fadeout 1.0
 
-    # play music cafe_bg_2 volume 0.1 fadein 1.0 loop
+    play music cafe_bg_2 volume 0.1 fadein 1.0 loop
 
     scene bg cafe_seat
 
@@ -995,7 +1004,7 @@ label parker:
 
     play sound "characters/Parker/Order.mp3"
 
-    parker "yo anyways bruv, what u like to eat, yknow? u feel me, innit?"
+    parker "yo anyways bruv, what wud u like to eat, yknow? u feel me, innit?"
 
     # menu
     menu:
@@ -1150,11 +1159,15 @@ label sebastian:
 
     play sound "characters/Sebastian/Introduction.mp3" # play voice 1
 
-    seb
+    seb "Well, good evening, Master. Thank you for choosing me as your maid for the evening."
+
+    "It was 10am."
     
     # filler char and dialogue and voice
 
-    play sound "characters" # play voice 2
+    play sound "characters/Sebastian/Order.mp3" # play voice 2
+
+    seb "Now, what can we get started for you, Master?"
 
     # dialogue 2
 
@@ -1172,6 +1185,12 @@ label sebastian:
 
     # dialogue and voice acknowledges order (3)
 
+    play sound "characters/Sebastian/Acknowledge.mp3"
+
+    seb "Wonderful choices, Master. I will be right out with that. You sit here, sit tight, and I'll come back with that."
+
+    hide seb
+
     # hide char
 
     scene bg black
@@ -1187,16 +1206,92 @@ label sebastian:
     "You see your maid coming towards you for your food."
 
     # show char
-    show 
+    show seb
 
     # dialogue and voice 4, brings order
+
+    play sound "characters/Sebastian/Return.mp3"
+
+    seb "Well, Master, I have your speciality plate right here for you."
+
+    mc "Thank you, kind maid... sir, for the food."
+
+    play sound "characters/Sebastian/Spell_1.mp3"
+
+    seb "Now, if you would like me to, I can put a spell on this food to make it ten, ten times the taste as it was before."
+
+    mc "Sure!"
+
+    mc "{i}Oh man, is this the infamous moe kyun he\'s going to do for me?{/i}"
+
+    mc "{i}I\'m so excited but also having second-hand embarrassment.{/i}"
+
+    play sound "characters/Sebastian/Spell_2.mp3"
+
+    seb "Very well."
+
+    stop music fadeout 2.0
+
+    hide seb
+
+    scene bg black
+
+    pause 2.0
+
+    scene bg ritual
+
+    play audio seb_ritual volume 0.1
+
+    play sound "characters/Sebastian/Spell_3.mp3"
+
+    seb "(insert latin here)"
+
+    mc "...where tf am I?"
+
+    stop audio fadeout 1.0
+
+    scene bg black
+
+    pause 2.0
+
+    scene bg cafe_seat
+
+    play music cafe_bg_2 volume 0.1 fadein 1.0 loop
+
+    show seb
+
+    play sound "characters/Sebastian/Spell_4.mp3"
+
+    seb "There you are, Master. I very much appreciated that. Hopefully this food taste great."
 
     # birdtime menu
     menu:
         mc "{i}How do I even reply to that...?{/i}"
 
+        "Spread your wings":
+            "You spread your arms wide as they're wings."
+
+            "Sebastian believed you were performing some ritual based on your arm movement patterns."
+
+            "He loved your reply."
+
+            "Good option"
+
+        "Sing a beautiful tune":
+            "You sing a beautiful tune."
+
+            "At some point, your voice cracked and Sebastian didn't like that."
+
+            "Bad option."
+
+        "Nod":
+            "You nodded."
+
+            "Sebastian was hoping for a better reply after pouring his soul into your food."
+
+            "Bad option."
     
-    hide # hide char
+    hide seb # hide char
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
 
@@ -1206,34 +1301,75 @@ label sebastian:
 
     "As you're about to leave to pay for your check, the maid comes to your table."
 
-    show # show char
+    show seb # show char
 
     # dilogue and voice 5, birthday
+    play sound "characters/Sebastian/Birthday_1.mp3"
 
-    mc "...thanks??"
+    seb "Well, Master, I have come back to serve you once again. It is just been brought on to me that it was a special day for you. It is in fact your birthday."
 
-    mc "{i}...how does he know it's my birthday?{/i}"
+    play sound "characters/Sebastian/Birthday_2.mp3"
 
-    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+    seb "Now every special day, every birthday, requires... a good slice to enjoy."
 
-    mc "{i}At least someone wished me a happy birthday so that made me a bit happy despite the tsundere he is.{/i}"
+    "Sebastian gives you a plate of a piece of cake. It wasn't extravagent but it meant a lot to you."
+
+    play sound "characters/Sebastian/Birthday_3.mp3"
+
+    seb "May I sing happy birthday to you?"
+
+    mc "I would love that very much."
+
+    play sound "characters/Sebastian/Birthday_4.mp3"
+
+    seb "Very well."
+
+    play sound "characters/Sebastian/Birthday_5.mp3"
+
+    seb "(sings happy birthday)"
+
+    mc "{i}You know... despite the fact that I got transported to a whole ritual and some black magic was casted on my food.{/i}"
+
+    mc "{i}I feel a little generous.{/i}"
+
+    "You decided to tip him a \'PSA 10 Pikachu Illustrator\'."
+
+    play sound "characters/Sebastian/Tips.mp3"
+
+    seb "Well, thank you very very much, Master. This was... this was very generous offer I must say."
+
+    mc "You're welcome."
+
+    mc "{i}You know, I don\'t even know how he knew my birthday but this was an enjoyable experience.{/i}"
 
     # dialogue and voice 6, goodbye
 
-    mc "Uhm, yea, sorry. I-It was nice having you as my maid! Haha.."
+    play sound "characters/Sebastian/Goodbye_1.mp3"
 
-    hide # hide char
+    seb "Well, I hope you had a wonderful time here at the cafe. And I wish you the best rest of your day. And the best rest of your birthday."
+
+    play sound "characters/Sebastian/Goodbye_2.mp3"
+
+    seb "Hope to see you again. Thank you."
+
+    mc "Thank you, Maid Sir Sebastian."
+
+    hide seb # hide char
 
     call ending_cafe
 
-    "Ending " # end char
+    "Ending Seb" # end char
 
     return
 
 label ending_cafe:
+    stop music
+
+    play music cafe_bg_1 volume 0.1 fadein 1.0 loop 
+
     scene bg cafe_hall
 
-    "You went to go pay for your food of $1000000 + their mandatory 1000% tips."
+    "You went to go pay for your food of $1000000 + their mandatory 1000\% tips."
 
     play sound applepay
 
