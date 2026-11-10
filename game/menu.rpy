@@ -60,9 +60,9 @@ define menu_entries = {
         "name": "Sebastian",
         "image": "characters/Sebastian/sebastian.png",
         "traits": [
-            "Loud",
-            "Direct",
-            "Brash",
+            "Tired",
+            "Enigmatic",
+            "Easy Going",
         ],
         "voice": "characters/Sebastian/Recording 2.wav",
     },
