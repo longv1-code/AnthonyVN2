@@ -11,6 +11,7 @@ define seb = Character("Sebastian")
 define mc = Character("Anthony")
 define kevin = Character("Kevin")
 define alex = Character("Alex")
+define sofia = Character("Sofia")
 
 define arlecchino = Character("Arlecchino")
 define x = Character("?")
@@ -144,7 +145,7 @@ image alex:
     yalign 0.5
 
 image sofia:
-    "characters/Alex/alex.jpg"
+    "characters/Sofia/sofia.png"
     zoom 0.3
     xalign 0.5
     yalign 0.5
@@ -175,15 +176,16 @@ image sofia rose:
 
 image sofia stares:
     "characters/Sofia/sofia stares.png"
-    zoom 0.3
+    zoom 0.7
     xalign 0.5
     yalign 0.5
 
 # The game starts here.
 
 label start:
+    if length(persistent.retries) >= 7:
+        jump true_ending
     if persistent.retries > 0:
-        $ persistent.menu_removed = [] # testing purpose
         jump menu_scene
     if persistent.endingB:
         jump realistic
@@ -1654,45 +1656,33 @@ label sofia:
     
     show sofia # char
 
-    play sound "characters/Parker/Introduction.mp3" # play voice 1
+    play sound "characters/Sofia/Voice 1.mp3" # play voice 1
 
     # dialogue 1
-    parker "wah gwan, bruv. thank u for choosing me, Ali G, to be ur mate today, innit."
+    sofia "{i}gasp{/i} Oh my god! Who is that handsome young man over there? Is that... I was informed that you\'ll be arriving. You chose me? To be your maid? Thank you, Anthony-Kun! You\'ve made me so happy I could just cry! Thank you! I promise I\'ll be the best maid ever!"
     
     # filler char and dialogue and voice
 
-    show parker points
+    show sofia hand
 
-    play sound "characters/Parker/Filler.mp3" # play voice 2
+    play sound "<to 18.4>characters/Sofia/Voice 2.mp3" # play voice 2
 
-    parker "make sure u remember to stream my new song. ♪{i}Who is I, Mm, Who is I, Uh, Who is I{/i}♪"
+    sofia "Um, what would you like to order? Yeah, there's a lot of items on our menu. Um, if I had to recommend something with garlic, lots of garlic. You don't mind the sun, do you? You do go outside? Yeah, that's good. That's good."
 
-    # dialogue 2
-    show parker
-
-    play sound "characters/Parker/Order.mp3"
-
-    parker "yo anyways bruv, what wud u like to eat, yknow? u feel me, innit?"
+    mc "{i}Why is she saying it like that...?{/i}"
 
     # menu
     menu:
-        "Nans Lasanga":
-            "You have chosen Nans Lasanga"
-            mc "I\'ll have the Nans Lasanga."
-        "Rice and Peas":
-            "You have chosen... Rice and Peas?"
-            mc "I\'ll have the Rice and Peas."
-        "Fish and Chips":
-            "You have opted for the jolly good Fish and Chips."
-            mc "I\'ll have the Fish and Chips."
+        "EXCLUSIVE SPECIAL: Garlic Meat pie":
+            "You have chosen the EXCLUSIVE SPECIAL: Garlic Meat pie."
 
     # dialogue and voice acknowledges order (3)
 
-    play sound "characters/Parker/Acknowledge.mp3"
+    play sound "<from 18.5>characters/Sofia/Voice 2.mp3"
     
-    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
+    sofia "I\'ll be right back with your food."
 
-    hide parker
+    hide sofia
 
     # hide char
 
@@ -1709,106 +1699,142 @@ label sofia:
     "You see your maid coming towards you for your food."
 
     # show char
-    show parker
+    show sofia food
 
     # dialogue and voice 4, brings order
-    play sound "characters/Parker/Return.mp3"
+    play sound "<to 6>characters/Sofia/Voice 3.mp3"
 
-    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that {b}tree{/b}, innit, yknow what i mean, that little bit of {b}tree{/b} in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
+    sofia "I'm back with your food, it's one of my famous meat pies, I made it myself."
+
+    play sound "<from 6.1 to 14>characters/Sofia/Voice 3.mp3"
+
+    sofia "Um, just got a little messy in the process. Nothing bad, just had to go hunt- I mean"
+
+    play sound "<from 14.4 to 16.9>characters/Sofia/Voice 3.mp3"
+
+    sofia "Um, use the ingredients in the kitchen."
+
+    play sound "<from 17>characters/Sofia/Voice 3.mp3"
+
+    sofia "Yes. I hope you enjoy it, it has lots of garlic, lots of it, mm-hmm."
+
     # birdtime menu
     menu:
         mc "{i}How do I even reply to that...?{/i}"
 
+        "Spread Wings":
+            "You spread your arms open like they're wings."
+
+            "Sofia saw it as a sign of a vampire flaping his wings and almost killed you."
+
+            "Bad option."
+
         "Tilt your head":
             "You tilt your head."
 
-            "Ali G tilts his head, but he took yours as a sign of aggression."
+            "Sofia saw your tilt as a sign of displease."
 
-            parker "chill bruv, i no want no trouble"
-
-            "He didn't fuck with your vibe and left."
+            "She didn\'t like that response."
 
             "Bad option."
 
-        "Gaze intently":
-            "You gaze intently into Ali G's eyes."
+        "Dance":
+            play sound dance
+            "You start fortnite dancing in front of her."
 
-            "It became an awkward moment of two dudes staring at each other\'s eyes."
-
-            parker "mb dawg, guess you dont pass the vibe check."
-
-            "He left, thinking he found the one."
-
-            "Bad option."
-
-        "Sing a beautiful tone":
-            "You start singing a beautiful tone."
-
-            "Ali G was taken back by your voice."
-
-            parker "eyyy bruv, i like ur tune. hit me up."
-
-            "He hands you his phone number, asking you to produce a song together sometime."
+            "She seems pleased that you like garlic so much."
 
             "Good option."
 
     
-    hide parker # hide char
+    hide sofia # hide char
+
+    $ preferences.afm_enable = False
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
 
-    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+    play sound eating
 
-    "After some time, you somehow ate it all."
+    mc "nom nom nom..."
 
-    "As you're about to leave to pay for your check, the maid comes to your table."
+    "A very strong taste of garlic jumps at you out of nowhere and you immediately gag."
 
-    show parker
+    show sofia food
 
-    play sound "characters/Parker/Birthday_1.mp3"
+    play sound "characters/Sofia/Thinks vampire.mp3"
 
-    parker "me gotchu a cake or whateva bruv but"
+    $ preferences.afm_enable = True
+    $ preferences.afm_time = 16
 
-    show parker points
+    sofia "Did the garlic hurt you? You don\'t like the garlic?!"
 
-    play sound "characters/Parker/Birthday_2.mp3"
+    play sound "characters/Sofia/dustin-lucas-will-mike-burp_pzlseHom.mp3"
 
-    parker "no gay shit no homoshit bruv. me is not a homosexual."
+    show sofia stares
 
-    # dilogue and voice 5, birthday
+    $ preferences.afm_enable = False
 
-    mc "Thanks..? I appreicate that... bruv, socks on?"
+    pause 1.0
 
-    mc "{i}...how does he know it's my birthday?{/i}"
+    mc "No no, wait, it was just a lot of garlic is all!"
+
+    show sofia food
+
+    play sound "characters/Sofia/Voice okay we good not vampire 261109_131628.mp3"
+
+    sofia "Oh, it was just a lot of garlic? Ah. I see. Okay, good. That\'s- that's good."
+
+    hide sofia
+
+    "Sofia leaves with a... smile(?) on her face."
+    
+    "You felt shivers."
+
+    mc "{i}I need to get out of this place...{/i}"
+
+    "As you were ready to dash out of the place, Sofia appears in front of you before you can get out of the table."
+
+    show sofia cupcake
+
+    play sound "characters/Sofia/Voice 4.mp3"
+
+    sofia "A weird man just dropped by and told me something very interesting. Anthony-Kun, it\'s your birthday! Happy birthday! Um, I wish you the best of birthdays and may all your wishes come true. I think you\'re super awesome sauce. And may you get lots of bitches, Anthony as well as lots of pussy. Get into it, I guess."
+
+    mc "Thanks..? I appreicate that... I will go get them..."
+
+    mc "bitches and pussy."
+
+    mc "I will... get in to it."
+
+    mc "{i}...how does she know it's my birthday?{/i}"
 
     mc "{i}Man, this place keeps getting weirder by the second.{/i}"
 
     mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
 
-    # dialogue and voice 6, goodbye
-    play sound "characters/Parker/Goodbye_1.mp3"
+    show sofia rose
 
-    parker "goodbye from Ali G"
+    play sound "characters/Sofia/Voice 5.mp3"
 
-    show parker
+    sofia "Anthony-Kun, you didn\'t have to tip me 1,000 gazillion million dollars! That\'s so- that\'s so sugoi! {i}breaks character immediately..{/i} Thank you here you go. Come again soon!"
 
-    play sound "characters/Parker/Goodbye_2.mp3"
+    mc "{i}I tipped her?{/i}"
 
-    parker "peace!"
+    "You start feeling your pockets."
 
-    play sound "characters/Parker/Goodbye_3.mp3"
+    "Your wallet and phone is gone."
 
-    parker "{b}BOOYAHKASHA{/b}"
+    mc "{i}Is that why she\'s laughing and totally not because she can\'t keep a straight face recording these lines?{/i}"
 
-    hide parker
+    mc "Hahahaha... you\'re welcome! Yup, best service. 5 big booms."
 
-    "Ali G suddenly vanished out of thin air."
+    mc "{i}I need to leave.{/i}"
 
-    mc "{i}And that right there is when I need to see a therapist.{/i}"
+    hide sofia
 
     call ending_cafe
 
-    "Ending Parker" # end char
+    "Ending Sofia" # end char
 
     return
 
@@ -1829,6 +1855,8 @@ label ending_cafe:
 
     "As you walk out of the maid cafe, you feel your heartbeating so fast."
 
+    stop music
+
     scene bg black
 
     "You then collasped in front of the exit."
@@ -1846,3 +1874,26 @@ label ending_cafe:
     "You died."
 
     $ persistent.retries += 1
+
+label true_ending:
+    scene bg black
+
+    $ persistent.menu_removed = []
+
+    mc "Oww... my head."
+
+    "You feel your head ringing and in pain like there\'s thousands of needles in your skull."
+
+    mc "What happened?"
+
+    mc "I feel as if I just went through the maid cafe seven times."
+
+    mc "Where even am I?"
+
+    "You start opening up your eyes."
+
+    scene bg bedroom
+
+    mc "It felt like I had a very, very long dream about maid cafes."
+
+    

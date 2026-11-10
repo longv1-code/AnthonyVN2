@@ -55,7 +55,7 @@ define menu_entries = {
     },
     "sofia": {
         "name": "Sofia",
-        "image": "characters/Sofia",
+        "image": "characters/Sofia/sofia.png",
         "traits": [
             "Loyal",
             "Skewed Moral Compass",
