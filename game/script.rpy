@@ -183,13 +183,13 @@ image sofia stares:
 # The game starts here.
 
 label start:
-    if length(persistent.retries) >= 7:
+    if len(persistent.menu_removed) >= 7:
         jump true_ending
     if persistent.retries > 0:
         jump menu_scene
     if persistent.endingB:
         jump realistic
-    
+        
     "Today is Novemeber 9th, 2026. A very special day for a certain someone."
 
     "It is your birthday. You've been looking forward this ever since you planned a whole hangout session with your friends."
@@ -401,6 +401,8 @@ label realistic:
 
     "You sighed and stood up to open up your blinds."
 
+    play music bedroom1 volume 0.1
+
     scene bg animebedroom
 
     mc "Today is my birthday and yet..."
@@ -426,6 +428,8 @@ label realistic:
     "You went to get ready by showering and dressing up in your favorite Suisei shirt, favorite Ina jacket, favorite baggy black pants, and favorite tote bag."
 
     "You put in your shoes and went out the door."
+
+    stop music
 
     jump outside
 
@@ -653,6 +657,10 @@ label abot:
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
 
+    play sound eating
+
+    mc "nom nom nom..."
+
     mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
 
     "After some time, you somehow ate it all."
@@ -784,6 +792,10 @@ label ant:
     hide ant
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    play sound eating
+
+    mc "nom nom nom..."
 
     mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
 
@@ -966,6 +978,10 @@ label charley:
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
 
+    play sound eating
+
+    mc "nom nom nom..."
+
     mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
 
     "After some time, you somehow ate it all."
@@ -1131,6 +1147,10 @@ label parker:
     hide parker # hide char
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    play sound eating
+
+    mc "nom nom nom..."
 
     mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
 
@@ -1337,6 +1357,10 @@ label sebastian:
     hide seb # hide char
 
     "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    play sound eating
+
+    mc "nom nom nom..."
 
     mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
 
@@ -1879,6 +1903,8 @@ label true_ending:
     scene bg black
 
     $ persistent.menu_removed = []
+    $ persistent.retries = 0
+    $ persistent.endingB = False
 
     mc "Oww... my head."
 
@@ -1892,8 +1918,72 @@ label true_ending:
 
     "You start opening up your eyes."
 
-    scene bg bedroom
+    scene bg animebedroom
+
+    play music bedroom2 volume 0.1
+
+    pause 1.2
+
+    mc "Right, I\'m in my bedroom."
+
+    mc "Of course, I am."
 
     mc "It felt like I had a very, very long dream about maid cafes."
 
-    
+    mc "What time is it?"
+
+    "You checked the time and it\'s 5pm."
+
+    mc "Shit! I\'m going to be late!"
+
+    scene bg black
+
+    "You started running around your house to shower and get ready."
+
+    mc "I can\'t keep them waiting!"
+
+    scene bg door
+
+    mc "Okay... I think I got everything."
+
+    "You start looking through your bag."
+
+    mc "Got my wallet... keys... Switch... chargers..."
+
+    "Your phone vibrates in your pocket."
+
+    "You pull your phone out of your pocket and read the message."
+
+    mc "They\'re already here?!"
+
+    "You quickly put on your shoes but your feet aren\'t fully in it and plan to adjust later."
+
+    play sound door_open
+
+    "You rushed out the door."
+
+    scene bg everyone
+
+    mc "Hey, guys! Sorry for the wait!"
+
+    abot "What took you so long? I was about to bet another $100 that you weren\'t going to come out in a few minutes. Thank god I didn\'t."
+
+    alex "Hey. You were starting to piss me off on how late you were."
+
+    ant "I-I-It\'s not like I was worried if y-you were going to come out or not."
+
+    kevin "Yo, what\'s up, dude? Took you long enough."
+
+    parker "wah gwan, bruv. been waitin'. busy listening to my new hot song?"
+
+    charley "(insert japanese here)"
+
+    seb "Howdy, Maste-, I mean Anthony. Been waiting on you."
+
+    sofia "So, did you get that pussy or what?"
+
+    pause 0.8
+
+    "True ending: Happy Birthday."
+
+    return
