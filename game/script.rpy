@@ -1023,7 +1023,7 @@ label parker:
 
     play sound "characters/Parker/Acknowledge.mp3"
     
-    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
+    parker "booyahkasha, i is gonna bring u da best food Me Nan' used to make. rest in peace Me Nan', had the biggest {b}rack{/b}."
 
     hide parker
 
