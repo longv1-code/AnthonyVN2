@@ -66,23 +66,23 @@ define menu_entries = {
         ],
         "voice": "characters/Sebastian/Recording 2.wav",
     },
-    "jayden": {
-        "name": "Jayden",
-        "image": "characters/Jayden",
+    "alex": {
+        "name": "Alex",
+        "image": "characters/",
         "traits": [
-            "",
-            "",
-            "",
+            "Sarcastic",
+            "Smug",
+            "Honest",
         ],
-        "voice": "characters/Jayden",
+        "voice": "characters/Jayden/jayden.jpg",
     },
     "sofia": {
         "name": "Sofia",
         "image": "characters/Sofia",
         "traits": [
-            "",
-            "",
-            "",
+            "Loyal",
+            "Skewed Moral Compass",
+            "Emotional",
         ],
         "voice": "characters/Sofia",
     },

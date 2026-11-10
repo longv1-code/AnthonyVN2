@@ -10,6 +10,7 @@ define abot = Character("Abot")
 define seb = Character("Sebastian")
 define mc = Character("Anthony")
 define kevin = Character("Kevin")
+define alex = Character("Alex")
 
 define arlecchino = Character("Arlecchino")
 define x = Character("?")
@@ -1240,7 +1241,7 @@ label sebastian:
 
     scene bg ritual
 
-    play audio seb_ritual volume 0.1
+    play audio "audio/seb_ritual.mp3" volume 0.1
 
     play sound "characters/Sebastian/Spell_3.mp3"
 
@@ -1359,6 +1360,348 @@ label sebastian:
     call ending_cafe
 
     "Ending Seb" # end char
+
+    return
+
+label jayden:
+    "You have chosen Sebastian as your maid."
+
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid coming towards you."
+    
+    show jayden # char
+
+    play sound "characters/Jayden/Introduction.mp3" # play voice 1
+
+    # dialogue 1
+    parker "wah gwan, bruv. thank u for choosing me, Ali G, to be ur mate today, innit."
+    
+    # filler char and dialogue and voice
+
+    show parker points
+
+    play sound "characters/Parker/Filler.mp3" # play voice 2
+
+    parker "make sure u remember to stream my new song. ♪{i}Who is I, Mm, Who is I, Uh, Who is I{/i}♪"
+
+    # dialogue 2
+    show parker
+
+    play sound "characters/Parker/Order.mp3"
+
+    parker "yo anyways bruv, what wud u like to eat, yknow? u feel me, innit?"
+
+    # menu
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    # dialogue and voice acknowledges order (3)
+
+    play sound "characters/Parker/Acknowledge.mp3"
+    
+    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
+
+    hide parker
+
+    # hide char
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    # show char
+    show parker
+
+    # dialogue and voice 4, brings order
+    play sound "characters/Parker/Return.mp3"
+
+    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that {b}tree{/b}, innit, yknow what i mean, that little bit of {b}tree{/b} in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
+    # birdtime menu
+    menu:
+        mc "{i}How do I even reply to that...?{/i}"
+
+        "Tilt your head":
+            "You tilt your head."
+
+            "Ali G tilts his head, but he took yours as a sign of aggression."
+
+            parker "chill bruv, i no want no trouble"
+
+            "He didn't fuck with your vibe and left."
+
+            "Bad option."
+
+        "Gaze intently":
+            "You gaze intently into Ali G's eyes."
+
+            "It became an awkward moment of two dudes staring at each other\'s eyes."
+
+            parker "mb dawg, guess you dont pass the vibe check."
+
+            "He left, thinking he found the one."
+
+            "Bad option."
+
+        "Sing a beautiful tone":
+            "You start singing a beautiful tone."
+
+            "Ali G was taken back by your voice."
+
+            parker "eyyy bruv, i like ur tune. hit me up."
+
+            "He hands you his phone number, asking you to produce a song together sometime."
+
+            "Good option."
+
+    
+    hide parker # hide char
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show parker
+
+    play sound "characters/Parker/Birthday_1.mp3"
+
+    parker "me gotchu a cake or whateva bruv but"
+
+    show parker points
+
+    play sound "characters/Parker/Birthday_2.mp3"
+
+    parker "no gay shit no homoshit bruv. me is not a homosexual."
+
+    # dilogue and voice 5, birthday
+
+    mc "Thanks..? I appreicate that... bruv, socks on?"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
+
+    # dialogue and voice 6, goodbye
+    play sound "characters/Parker/Goodbye_1.mp3"
+
+    parker "goodbye from Ali G"
+
+    show parker
+
+    play sound "characters/Parker/Goodbye_2.mp3"
+
+    parker "peace!"
+
+    play sound "characters/Parker/Goodbye_3.mp3"
+
+    parker "{b}BOOYAHKASHA{/b}"
+
+    hide parker
+
+    "Ali G suddenly vanished out of thin air."
+
+    mc "{i}And that right there is when I need to see a therapist.{/i}"
+
+    call ending_cafe
+
+    "Ending Parker" # end char
+
+    return
+
+label sofia:
+    "You have chosen Sebastian as your maid."
+
+    "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
+
+    "You sighed in sadness."
+
+    mc "{i}Where did I go wrong?{/i}"
+
+    "You see a maid coming towards you."
+    
+    show parker # char
+
+    play sound "characters/Parker/Introduction.mp3" # play voice 1
+
+    # dialogue 1
+    parker "wah gwan, bruv. thank u for choosing me, Ali G, to be ur mate today, innit."
+    
+    # filler char and dialogue and voice
+
+    show parker points
+
+    play sound "characters/Parker/Filler.mp3" # play voice 2
+
+    parker "make sure u remember to stream my new song. ♪{i}Who is I, Mm, Who is I, Uh, Who is I{/i}♪"
+
+    # dialogue 2
+    show parker
+
+    play sound "characters/Parker/Order.mp3"
+
+    parker "yo anyways bruv, what wud u like to eat, yknow? u feel me, innit?"
+
+    # menu
+    menu:
+        "Nans Lasanga":
+            "You have chosen Nans Lasanga"
+            mc "I\'ll have the Nans Lasanga."
+        "Rice and Peas":
+            "You have chosen... Rice and Peas?"
+            mc "I\'ll have the Rice and Peas."
+        "Fish and Chips":
+            "You have opted for the jolly good Fish and Chips."
+            mc "I\'ll have the Fish and Chips."
+
+    # dialogue and voice acknowledges order (3)
+
+    play sound "characters/Parker/Acknowledge.mp3"
+    
+    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
+
+    hide parker
+
+    # hide char
+
+    scene bg black
+
+    "You then proceed to wait what felt like eternity for your food."
+
+    pause 5.0
+
+    mc "{i}It does NOT take that long to make my food.{/i}"
+
+    scene bg cafe_seat
+
+    "You see your maid coming towards you for your food."
+
+    # show char
+    show parker
+
+    # dialogue and voice 4, brings order
+    play sound "characters/Parker/Return.mp3"
+
+    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that {b}tree{/b}, innit, yknow what i mean, that little bit of {b}tree{/b} in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
+    # birdtime menu
+    menu:
+        mc "{i}How do I even reply to that...?{/i}"
+
+        "Tilt your head":
+            "You tilt your head."
+
+            "Ali G tilts his head, but he took yours as a sign of aggression."
+
+            parker "chill bruv, i no want no trouble"
+
+            "He didn't fuck with your vibe and left."
+
+            "Bad option."
+
+        "Gaze intently":
+            "You gaze intently into Ali G's eyes."
+
+            "It became an awkward moment of two dudes staring at each other\'s eyes."
+
+            parker "mb dawg, guess you dont pass the vibe check."
+
+            "He left, thinking he found the one."
+
+            "Bad option."
+
+        "Sing a beautiful tone":
+            "You start singing a beautiful tone."
+
+            "Ali G was taken back by your voice."
+
+            parker "eyyy bruv, i like ur tune. hit me up."
+
+            "He hands you his phone number, asking you to produce a song together sometime."
+
+            "Good option."
+
+    
+    hide parker # hide char
+
+    "You grab a bite of your food but hesitates for a bit because of your dream."
+
+    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+
+    "After some time, you somehow ate it all."
+
+    "As you're about to leave to pay for your check, the maid comes to your table."
+
+    show parker
+
+    play sound "characters/Parker/Birthday_1.mp3"
+
+    parker "me gotchu a cake or whateva bruv but"
+
+    show parker points
+
+    play sound "characters/Parker/Birthday_2.mp3"
+
+    parker "no gay shit no homoshit bruv. me is not a homosexual."
+
+    # dilogue and voice 5, birthday
+
+    mc "Thanks..? I appreicate that... bruv, socks on?"
+
+    mc "{i}...how does he know it's my birthday?{/i}"
+
+    mc "{i}Man, this place keeps getting weirder by the second.{/i}"
+
+    mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
+
+    # dialogue and voice 6, goodbye
+    play sound "characters/Parker/Goodbye_1.mp3"
+
+    parker "goodbye from Ali G"
+
+    show parker
+
+    play sound "characters/Parker/Goodbye_2.mp3"
+
+    parker "peace!"
+
+    play sound "characters/Parker/Goodbye_3.mp3"
+
+    parker "{b}BOOYAHKASHA{/b}"
+
+    hide parker
+
+    "Ali G suddenly vanished out of thin air."
+
+    mc "{i}And that right there is when I need to see a therapist.{/i}"
+
+    call ending_cafe
+
+    "Ending Parker" # end char
 
     return
 
