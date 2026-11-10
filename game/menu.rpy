@@ -7,17 +7,6 @@ define menu_entries = {
             "Secretly loves you",
             "Latino and gay"
         ],
-        "voice": [
-            "characters/Ant/maidline1.mp3",
-            "characters/Ant/maidline2.mp3",
-            "characters/Ant/maidline3.mp3",
-            "characters/Ant/maidline4.mp3",
-            "characters/Ant/maidline5.mp3",
-            "characters/Ant/maidline6.mp3",
-            "characters/Ant/maidline7.mp3",
-            "characters/Ant/maidline8.mp3",
-            "characters/Ant/maidline9.mp3",
-        ],
     },
     "charley": {
         "name": "Charley",
@@ -27,7 +16,6 @@ define menu_entries = {
             "Dragon of Dojima",
             "Stoic",
         ],
-        "voice": "characters/Charley/anthonybirthday.mp3"
     },
     "parker": {
         "name": "Parker",
@@ -37,7 +25,6 @@ define menu_entries = {
             "Swagtasic",
             "Intellectual"
         ],
-        "voice": "characters/Parker/ALI G MP3 BOOYAHKASHA.mp3"
     },
     "abot": {
         "name": "ABot",
@@ -46,14 +33,6 @@ define menu_entries = {
             "Nervous",
             "Chill",
             "Gambling Addict",
-        ],
-        "voice": [
-            "characters/ABot/ABotLine1.wav",
-            "characters/ABot/ABotLine2.wav",
-            "characters/ABot/ABotLine3.wav",
-            "characters/ABot/ABotLine3alt.wav",
-            "characters/ABot/ABotLine4.wav",
-            "characters/ABot/ABotLine5.wav",
         ],
     },
     "sebastian": {
@@ -64,17 +43,15 @@ define menu_entries = {
             "Enigmatic",
             "Easy Going",
         ],
-        "voice": "characters/Sebastian/Recording 2.wav",
     },
     "alex": {
         "name": "Alex",
-        "image": "characters/",
+        "image": "characters/Alex/alex.jpg",
         "traits": [
             "Sarcastic",
             "Smug",
             "Honest",
         ],
-        "voice": "characters/Jayden/jayden.jpg",
     },
     "sofia": {
         "name": "Sofia",
@@ -84,12 +61,11 @@ define menu_entries = {
             "Skewed Moral Compass",
             "Emotional",
         ],
-        "voice": "characters/Sofia",
     },
 }
 
 define menu_pages = [
-    ["abot", "ant", "charley", "jayden"],
+    ["abot", "alex", "ant", "charley"],
     ["parker", "sebastian", "sofia"],
 ]
 

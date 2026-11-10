@@ -137,7 +137,47 @@ image seb:
     xalign 0.5
     yalign 0.5
 
+image alex:
+    "characters/Alex/alex.jpg"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
 
+image sofia:
+    "characters/Alex/alex.jpg"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
+
+image sofia cupcake:
+    "characters/Sofia/sofia cupcake.png"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
+
+image sofia food:
+    "characters/Sofia/sofia food.png"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
+
+image sofia hand:
+    "characters/Sofia/sofia hand.png"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
+
+image sofia rose:
+    "characters/Sofia/sofia rose.png"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
+
+image sofia stares:
+    "characters/Sofia/sofia stares.png"
+    zoom 0.3
+    xalign 0.5
+    yalign 0.5
 
 # The game starts here.
 
@@ -1363,8 +1403,8 @@ label sebastian:
 
     return
 
-label jayden:
-    "You have chosen Sebastian as your maid."
+label alex:
+    "You have chosen Alex as your maid."
 
     "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
 
@@ -1374,27 +1414,24 @@ label jayden:
 
     "You see a maid coming towards you."
     
-    show jayden # char
+    show alex # char
 
-    play sound "characters/Jayden/Introduction.mp3" # play voice 1
+    play sound "characters/Alex/Introduction.mp3" volume 1.5 # play voice 1
 
     # dialogue 1
-    parker "wah gwan, bruv. thank u for choosing me, Ali G, to be ur mate today, innit."
+    alex "Hello Anthony! My name is Alex and thank you for choosing me to be your server today!"
     
     # filler char and dialogue and voice
 
-    show parker points
+    play sound "characters/Alex/Filler.mp3" volume 1.5 # play voice 2
 
-    play sound "characters/Parker/Filler.mp3" # play voice 2
-
-    parker "make sure u remember to stream my new song. ♪{i}Who is I, Mm, Who is I, Uh, Who is I{/i}♪"
+    alex "How do I know your name already? Don\'t ask ;) "
 
     # dialogue 2
-    show parker
 
-    play sound "characters/Parker/Order.mp3"
+    play sound "characters/Alex/Order.mp3" volume 1.5
 
-    parker "yo anyways bruv, what wud u like to eat, yknow? u feel me, innit?"
+    alex "Would you like me to bring you anything to eat? Not that it\'d matter considering you\'ll be back here in about 5 minutes give or take."
 
     # menu
     menu:
@@ -1410,11 +1447,11 @@ label jayden:
 
     # dialogue and voice acknowledges order (3)
 
-    play sound "characters/Parker/Acknowledge.mp3"
+    play sound "characters/Alex/Acknowledge.mp3" volume 1.5
     
-    parker "booyahkasha, i is gonna bring u da best food __ used to make. rest in peace __, had the biggest {b}rack{/b}."
+    alex "Alright! I\'ll be back in a few or however long it takes you to read some dialogue."
 
-    hide parker
+    hide alex
 
     # hide char
 
@@ -1431,12 +1468,25 @@ label jayden:
     "You see your maid coming towards you for your food."
 
     # show char
-    show parker
+    show alex
+
+    "Alex places the food you ordered on the table"
 
     # dialogue and voice 4, brings order
-    play sound "characters/Parker/Return.mp3"
+    play sound "characters/Alex/Magic_1.mp3" volume 1.5
 
-    parker "wah gwan, i is back, yknow what im sayin? u know i put a little bit of, yknow, i puttin' a little bit of that {b}tree{/b}, innit, yknow what i mean, that little bit of {b}tree{/b} in that food, bruv, so. just, just sit back n enjoy it, bruv, yknow what im sayin, yknow what i sayin?"
+    alex "What does this shit- oh right. \"Enjoy to your hearts content\"! then I\'m supposed to do something else? "
+
+    play sound "characters/Alex/Magic_2.mp3" volume 1.5
+    
+    alex "Oh yeah."
+
+    play sound fingersnap
+
+    alex "{i}snaps fingers{/i}"
+
+    "After Alex\'s fingers snap, you felt a small chill down your spine as if the room\'s temperature dropped significantly. Your food remained the same and yet the plate it rests on has ice shards hanging on the edges."
+    
     # birdtime menu
     menu:
         mc "{i}How do I even reply to that...?{/i}"
@@ -1444,98 +1494,155 @@ label jayden:
         "Tilt your head":
             "You tilt your head."
 
-            "Ali G tilts his head, but he took yours as a sign of aggression."
+            "Alex poured all his love into your food and all you gave was a nod."
 
-            parker "chill bruv, i no want no trouble"
-
-            "He didn't fuck with your vibe and left."
+            "Alex was pissed by your response."
 
             "Bad option."
 
-        "Gaze intently":
-            "You gaze intently into Ali G's eyes."
+        "Spread Wings":
+            "You spread your arms like they're wings."
 
-            "It became an awkward moment of two dudes staring at each other\'s eyes."
+            "Alex couldn\'t tell if you were just stupid or.."
 
-            parker "mb dawg, guess you dont pass the vibe check."
+            "stupid."
 
-            "He left, thinking he found the one."
+            "Alex didn\'t like that response."
 
             "Bad option."
 
-        "Sing a beautiful tone":
-            "You start singing a beautiful tone."
+        "Do a Somersault":
+            "You miraculously performed a somersault."
 
-            "Ali G was taken back by your voice."
+            "It wasn\'t the best but it worked."
 
-            parker "eyyy bruv, i like ur tune. hit me up."
-
-            "He hands you his phone number, asking you to produce a song together sometime."
+            "Alex found that funny."
 
             "Good option."
 
     
-    hide parker # hide char
+    hide alex # hide char
 
-    "You grab a bite of your food but hesitates for a bit because of your dream."
+    "Despite the initial texture of the food you ordered, the dish feels cold and yet somewhat comforting, you take it a bite."
 
-    mc "{i}It's... an interesting taste profile. I'll give them that.{/i}"
+    play sound eating
 
-    "After some time, you somehow ate it all."
+    mc "nom nom nom..."
 
-    "As you're about to leave to pay for your check, the maid comes to your table."
+    "The food tastes like the perfect mixture of sweetness and bitterness."
 
-    show parker
+    mc "{i}It\'s... unbeliveable. How can it taste so good yet look so awful at the same time?{/i}"
 
-    play sound "characters/Parker/Birthday_1.mp3"
+    "You kept eating more of it until eventually there was no more left."
 
-    parker "me gotchu a cake or whateva bruv but"
+    "Now you feel so full."
 
-    show parker points
+    mc "Haa... what a meal."
 
-    play sound "characters/Parker/Birthday_2.mp3"
+    "As you were about to leave the table, Alex shows up in front of you."
 
-    parker "no gay shit no homoshit bruv. me is not a homosexual."
+    show alex
 
-    # dilogue and voice 5, birthday
+    play sound "characters/Alex/Birthday_1.mp3" volume 1.5
 
-    mc "Thanks..? I appreicate that... bruv, socks on?"
+    alex "Before I leave you in this collapsing timestream for what it is, I figured I bring you something sweet to celebrate your birthday. Unless you want the ignorance crashing down within sacred temple of your mind, I suggest you do not ask how I know."\
 
-    mc "{i}...how does he know it's my birthday?{/i}"
+    "Alex hands you a cupcake."
+
+    pause 2.0
+
+    mc "...soooo is there something you need to say?"
+
+    play sound "characters/Alex/Birthday_2.mp3" volume 1.5
+
+    alex "Do I have anything to say?"
+
+    play sound "characters/Alex/Birthday_3.mp3" volume 1.5
+
+    alex "{i}talks to self{/i} Right... my contract..."
+
+    play sound "characters/Alex/Birthday_4.mp3" volume 1.5
+
+    alex "Well, you are great to be around admittingly despite how much you piss me off sometimes."
+
+    play sound "characters/Alex/Birthday_5.mp3" volume 1.5
+
+    alex "But honestly if you didn\'t piss me off a little bit, I\'d find it boring. A little chaos in life is what makes it fun after all. Not everything needs to be organized non-stressful."
+
+    play sound "characters/Alex/Birthday_6.mp3" volume 1.5
+
+    alex "If you lived your entire life stress free then it isn\'t really living, is it?"
+
+    play sound "characters/Alex/Birthday_7.mp3" volume 1.5
+
+    alex "You\'re a great artist, a gamer, and overall friend and meeting you and getting to know you is something I\'ll never regret."
+    
+    play sound "characters/Alex/Birthday_8.mp3" volume 1.5
+
+    alex "So, Happy Birthday Anthony! I\m glad to have met you despite how much you piss me off :D. "
+
+    mc "{i}...how does he know it's my birthday? And do I know this guy?{/i}"
 
     mc "{i}Man, this place keeps getting weirder by the second.{/i}"
 
     mc "{i}At least someone wished me a happy birthday so that made me a bit happy.{/i}"
 
-    # dialogue and voice 6, goodbye
-    play sound "characters/Parker/Goodbye_1.mp3"
+    play sound "characters/Alex/Birthday_9.mp3" volume 1.5
 
-    parker "goodbye from Ali G"
+    alex "A piece of birthday advice before you pay the egregious birthday tab that is about to be bestowed upon you."
 
-    show parker
+    play sound "characters/Alex/Advice_1.mp3" volume 1.5
 
-    play sound "characters/Parker/Goodbye_2.mp3"
+    alex "Time is relative. Just as everyone lives their own lives, you also must live your own. Being stressed out sometimes can be a good thing because at least you acknowledge a part of you is human."
 
-    parker "peace!"
+    play sound "characters/Alex/Advice_2.mp3" volume 1.5
 
-    play sound "characters/Parker/Goodbye_3.mp3"
+    alex "Chaos and order are two sides of the same coin. One cannot exist without the other and if you try to get rid of one then you\'re either left with a predictable future or a stream of uncertainty."
 
-    parker "{b}BOOYAHKASHA{/b}"
+    play sound "characters/Alex/Advice_3.mp3" volume 1.5
 
-    hide parker
+    alex "Be aware of the chaos around you, tackle the unknown and that\'s just the stream of life."
 
-    "Ali G suddenly vanished out of thin air."
+    play sound "characters/Alex/Advice_4.mp3" volume 1.5
 
-    mc "{i}And that right there is when I need to see a therapist.{/i}"
+    alex "I would say the advice is free, but with that tab you\'re about to pay- "
 
-    call ending_cafe
+    "Alex hands you the tab."
 
-    "Ending Parker" # end char
+    "The tab says $1000 with a mandatory 1000\% tips, service fee, seating fee, talking fee, eating fee, and many more."
 
+    play sound "characters/Alex/Advice_5.mp3" volume 1.5
+
+    alex "You\'re basically paying for every time you take a human action. Inflation is crazy these days huh?"
+
+    play sound "characters/Alex/Goodbye_1.mp3" volume 1.5
+
+    alex "Anyway, enjoy the perpetual stream of nothingness that is the time loop. I would say come back soon like it stipulates in my contract, but I don\'t fucking care. This place is going to disintegrate when this all over anyway."
+
+    play sound "characters/Alex/Goodbye_2.mp3" volume 1.5
+
+    alex "See ya later, bud! Don\'t croak too soon, Ok?"
+
+    hide alex
+
+    "The moment Alex left, the maid cafe started to crumble around you."
+
+    "Everything was slowly vanishing in thin air, and soon enough..."
+
+    scene bg black
+
+    "You were also part of the thin air."
+
+    play sound death
+
+    "You died."
+
+    "Ending Alex" # end char
+    
     return
 
 label sofia:
-    "You have chosen Sebastian as your maid."
+    "You have chosen Sofia as your maid."
 
     "As you wait for your maid, you comtemplate on your baka, chud, lonely life and using a maid cafe as an excuse to feel less lonely."
 
@@ -1545,7 +1652,7 @@ label sofia:
 
     "You see a maid coming towards you."
     
-    show parker # char
+    show sofia # char
 
     play sound "characters/Parker/Introduction.mp3" # play voice 1
 
@@ -1732,7 +1839,7 @@ label ending_cafe:
 
     mc "{i}What's happening to me?!{/i}"
 
-    mc "{i}Am I going to..{/i}"
+    mc "{i}Am I going to-{/i}"
 
     play sound death
 
